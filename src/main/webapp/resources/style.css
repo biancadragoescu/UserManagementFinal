@@ -1,0 +1,105 @@
+
+body{
+	background-image: url(http://fc05.deviantart.net/fs71/i/2011/126/2/0/minimal_grey_by_djeric-d3fqdrb.jpg);
+	font-family: Verdana;
+}
+.div{
+	display: block;
+	width: 420px;
+	height: 220px;
+	
+    
+    border: 5px solid grey;
+    border-radius: 5%;
+   
+    
+    margin: 200px auto;
+    background-image: url( http://i293.photobucket.com/albums/mm55/3LiteCh0mp/lightgreybackground.jpg);
+	text-align: center;
+    
+}
+
+input {
+	border-radius: 5%;
+	margin: 5px;
+	padding: 7px;
+	width: 300px;
+}
+
+.buton {
+	
+	border-radius: 15%;
+	width: 90px;
+	padding: 7px;
+    background: E3E2D6;
+    float: right;
+    margin-right: 60px;
+    color: 1D4948;
+    font-size: 15px;  
+    font-weight:bold; 
+    
+}
+.title{
+	color:grey;
+	font-style: italic;
+	display: block
+	border-bottom-width: 1px;
+	border-bottom-color: #C0C0C0;
+	border-bottom-style: solid;
+	font-size : 17px;
+	text-align: left;
+	padding : 5px;
+	
+	
+	
+}
+
+.form{
+	font-style: italic;
+}
+
+.rez{
+	font-style: italic;
+	font-size: 150px;
+	color: red;
+	margin: 300px 600px;
+}
+
+h2{
+	color: white;
+	font-style: italic;
+	margin-left: 1600px;
+	margin-top: 35px;
+}
+
+.wrong{
+	color: red;
+	font-style: italic;
+	font-size: 15px;
+	
+}
+
+.signout{
+	background: E3E2D6;
+	
+	border-radius: 15%;
+	width: 150px;
+	padding: 7px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  	
+ 	
+    color: 1D4948;
+    font-size: 30px;  
+    font-weight:bold; 
+}
+
+.newAccount { 
+	border-radius: 15%;
+    color: 1D4948;
+    font-size: 10px;  
+    font-weight:bold; 
+    margin-left: 230px;
+	
+}
