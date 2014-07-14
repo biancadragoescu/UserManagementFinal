@@ -3,7 +3,9 @@ package com.evozon.usermanagement.dao.file;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -20,11 +22,11 @@ public class FileDAO implements UserDAO {
 		String line;
 
 		try {
-			buffer = new BufferedReader(new FileReader("C:\\samuel\\workspace\\UserManagement\\file.csv"));
+			buffer = new BufferedReader(new FileReader("file.csv"));
 			while ((line = buffer.readLine()) != null) {
 				if (!line.equals("")) {
 					String[] parts = line.split(",");
-					User user = new User(parts[0], parts[1]);
+					User user = new User(parts[1],parts[2],new SimpleDateFormat(parts[3]),parts[4],parts[5],parts[6],parts[7],Boolean.parseBoolean(parts[8]));
 					list.add(user);
 				}
 			}
