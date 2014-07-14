@@ -2,7 +2,7 @@ package com.evozon.usermanagement.dao;
 
 import java.util.List;
 
-import com.evozon.usermanagement.service.User;
+import com.evozon.usermanagement.model.User;
 
 public interface UserDAO {
 
