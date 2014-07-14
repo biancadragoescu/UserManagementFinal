@@ -9,7 +9,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.evozon.usermanagement.dao.UserDAO;
-import com.evozon.usermanagement.service.User;
+import com.evozon.usermanagement.model.User;
 
 @Component
 public class FileDAO implements UserDAO {

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.evozon.usermanagement.dao.UserDAO;
+import com.evozon.usermanagement.model.User;
 
 @Service
 public class DefaultLoginService implements LoginService {

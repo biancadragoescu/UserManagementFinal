@@ -27,7 +27,7 @@
 	
 	<h1 class="title">
 	Login
-	<a href="http://localhost:8080/usermanagement/login" class="newAccount" >Create New Account</a>
+	<a href="http://localhost:8080/usermanagement/login" name="new" class="newAccount" >Create New Account</a>
 	</h1>
 	
 	 <form:input placeholder="Username" path="userName"/><br>

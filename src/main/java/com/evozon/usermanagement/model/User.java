@@ -1,4 +1,4 @@
-package com.evozon.usermanagement.service;
+package com.evozon.usermanagement.model;
 
 public class User {
 	private String userName;
