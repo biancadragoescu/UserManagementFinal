@@ -25,7 +25,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/samuel/enviorment/STS/sts-3.5.1.RELEASE/plugins/mail.jar"/>
-	<classpathentry kind="lib" path="C:/samuel/enviorment/STS/sts-3.5.1.RELEASE/plugins/activation.jar"/>
+	
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
