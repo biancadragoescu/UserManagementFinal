@@ -7,4 +7,5 @@ import com.evozon.usermanagement.model.User;
 public interface UserDAO {
 
 	public List<User> getAllUsers();
+
 }

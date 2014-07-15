@@ -21,7 +21,7 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String Login(Locale locale, Model model) {
 		
-		User user=new User();
+		User user = new User();
 		model.addAttribute("user", user );
 		
 		return "login";
@@ -32,7 +32,7 @@ public class LoginController {
 		
 
 		
-		String page="login";
+		String page = "login";
 		if( service.sucessLogin(user) == true ) {
 			page="sucess";
 		} else {
