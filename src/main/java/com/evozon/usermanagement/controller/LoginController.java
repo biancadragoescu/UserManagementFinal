@@ -8,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.evozon.usermanagement.model.User;
+import com.evozon.usermanagement.service.EditUserService;
 import com.evozon.usermanagement.service.LoginService;
 
 @Controller	//adauga un bean in spring container
@@ -17,24 +19,26 @@ public class LoginController {
 	
 	@Autowired	//declare a constructor
 	LoginService service;
+	@Autowired
+	EditUserService editService;
 	
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String Login(Locale locale, Model model) {
 		
-		User user=new User();
+		User user = new User();
 		model.addAttribute("user", user );
-		
+
 		return "login";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginSubmit(@ModelAttribute  User user, Model model) {
-
 		
-		String page="login";
+		String page = "login";
 		if( service.sucessLogin(user) == true ) {
 			page="sucess";
+			
 		} else {
 			model.addAttribute("fail", 0);
 		}

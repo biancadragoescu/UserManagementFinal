@@ -45,6 +45,7 @@ public class FileDAO implements UserDAO {
 		}
 		return list;
 	}
+
 	
 	public void writeUsersToFile(List<User> usersList) {
 		BufferedWriter writer = null;
@@ -66,14 +67,21 @@ public class FileDAO implements UserDAO {
 		}
 	}
 	
-	public void addUser(User u) {
+	public void addUser(User user) {
 		if(currentUsers == null){
 			currentUsers = getAllUsers();
 		}
 		
-		if(!currentUsers.contains(u)){
-			currentUsers.add(u);
+		if(!currentUsers.contains(user)){
+			currentUsers.add(user);
 			writeUsersToFile(currentUsers);
 		}
 	}
+
+	@Override
+
+	public void updateUsers(List<User> usersList) {
+		writeUsersToFile(usersList);	
+	}
+
 }
