@@ -1,7 +1,6 @@
 package com.evozon.usermanagement.model;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class User {
 	
@@ -13,7 +12,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String password;
-	private boolean isAdmin = false;
+	private boolean isAdmin;
 	
 	public User() {
 	
@@ -127,6 +126,12 @@ public class User {
 		} else if (!userName.equals(other.userName))
 			return false;
 		return true;
+	}
+	
+	@Override
+	public String toString(){
+		return ID + "," + userName + "," + email + "," + birthdate + "," +
+				phone + "," + firstName + "," + lastName + "," + password + "," + isAdmin + "\n";
 	}
 
 	
