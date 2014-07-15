@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.evozon.usermanagement.model.User;
 import com.evozon.usermanagement.service.EditUserService;
@@ -25,7 +26,7 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String Login(Locale locale, Model model) {
 		
-		User user=new User();
+		User user = new User();
 		model.addAttribute("user", user );
 
 		return "login";
@@ -33,15 +34,10 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginSubmit(@ModelAttribute  User user, Model model) {
-
-		User destinationUser;
 		
-		String page="login";
+		String page = "login";
 		if( service.sucessLogin(user) == true ) {
 			page="sucess";
-			destinationUser	= editService.findUserByUsername(user.getUserName());
-			//System.out.println(destinationUser.getEmail());
-			model.addAttribute(destinationUser);
 			
 		} else {
 			model.addAttribute("fail", 0);

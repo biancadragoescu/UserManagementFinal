@@ -10,7 +10,7 @@ import com.evozon.usermanagement.model.User;
 
 @Service
 public class DefaultLoginService implements LoginService {
-	@Autowired	// declare a constructor
+	@Autowired
 	private UserDAO dao;
 	private List<User> list;
 	

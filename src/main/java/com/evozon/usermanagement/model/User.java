@@ -1,6 +1,5 @@
 package com.evozon.usermanagement.model;
 
-import java.text.SimpleDateFormat;
 
 public class User {
 	

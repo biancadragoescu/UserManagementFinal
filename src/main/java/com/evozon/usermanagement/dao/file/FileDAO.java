@@ -45,6 +45,7 @@ public class FileDAO implements UserDAO {
 		}
 		return list;
 	}
+
 	
 	public void writeUsersToFile(List<User> usersList) {
 		BufferedWriter writer = null;
@@ -78,8 +79,9 @@ public class FileDAO implements UserDAO {
 	}
 
 	@Override
-	public void updateUsers(List<User> list) {
-		// TODO Auto-generated method stub
-		
+
+	public void updateUsers(List<User> usersList) {
+		writeUsersToFile(usersList);	
 	}
+
 }

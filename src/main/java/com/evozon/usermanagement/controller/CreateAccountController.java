@@ -28,7 +28,7 @@ public class CreateAccountController {
 	@RequestMapping(value = "/newAccount", method = RequestMethod.POST)
 	public String submitNewAccount(@ModelAttribute  User user, Model model){
 		createAccountService.addUser(user);
-		return "emailConfirmation";
+		return "emailConfirmationPage";
 	}
 	
 	
