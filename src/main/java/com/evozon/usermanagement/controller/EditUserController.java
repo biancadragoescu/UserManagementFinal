@@ -1,13 +1,13 @@
 
 package com.evozon.usermanagement.controller;
 
-import java.util.Locale;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,11 +19,13 @@ import com.evozon.usermanagement.service.EditUserService;
  * @author alexandrabara
  *
  */
+
 @Controller
 public class EditUserController {
 
 	@Autowired	
 	EditUserService service;
+	
 	
 	@RequestMapping(value = "/login/succes/edit", method = RequestMethod.GET)
 	public String getEditForm( User userA,Model model) {
@@ -54,9 +56,14 @@ public class EditUserController {
 	}
 	
 	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
-	public String loginSubmit(@RequestParam String userName, @RequestParam String currentPassword, @RequestParam String newPassword, @RequestParam String confirmPassword) {
+	public String loginSubmit(@RequestParam String currentPassword, @RequestParam String newPassword, @RequestParam String confirmPassword, HttpServletRequest request) {
 	
 		
+		HttpSession ses = request.getSession();
+		String userName = (String) ses.getAttribute("userName");
+		String password = (String) ses.getAttribute("password");
+		
+		System.out.println(password);
 		System.out.println(userName);
 		System.out.println(currentPassword);
 		System.out.println(newPassword);
@@ -69,6 +76,7 @@ public class EditUserController {
 //			model.addAttribute("fail", 0);
 //		}
 				
+		//User user = new User("samuel", null, null, null, null, null, "samuel", false);
 		return "sucess";
 	}
 	

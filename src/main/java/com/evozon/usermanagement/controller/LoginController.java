@@ -2,6 +2,9 @@ package com.evozon.usermanagement.controller;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,12 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.evozon.usermanagement.model.User;
 import com.evozon.usermanagement.service.EditUserService;
 import com.evozon.usermanagement.service.LoginService;
 
 @Controller	//adauga un bean in spring container
+@SessionAttributes({"userName","password"})
 public class LoginController {
 	
 	@Autowired	//declare a constructor
@@ -28,12 +33,17 @@ public class LoginController {
 		
 		User user = new User();
 		model.addAttribute("user", user );
-
+		
 		return "login";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginSubmit(@ModelAttribute  User user, Model model) {
+	public String loginSubmit(@ModelAttribute  User user, Model model, @RequestParam String userName, @RequestParam String password, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("userName", userName);
+		session.setAttribute("password", password);
 		
 		String page = "login";
 		if( service.sucessLogin(user) == true ) {
