@@ -41,7 +41,6 @@ public class LoginController {
 	public String loginSubmit(@ModelAttribute  User user, Model model, @RequestParam String userName, @RequestParam String password, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
-		
 		session.setAttribute("userName", userName);
 		session.setAttribute("password", password);
 		

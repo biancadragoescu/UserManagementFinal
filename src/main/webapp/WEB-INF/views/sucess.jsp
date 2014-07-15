@@ -15,7 +15,7 @@
 <body>
 	<ul class="meniu">
 		<li><a href="https://www.google.ro/?gws_rd=cr&ei=aCnFU4zzA4e0ywPAzoGQCw">Home</a></li>
-		<li><a href="">Change Password</a></li>
+		<li><a href="http://localhost:8080/usermanagement/changePassword">Change Password</a></li>
 		<li><a href="">Edit User Information</a></li>
 		<li class="logout"><a href="http://localhost:8080/usermanagement/login">Logout</a></li>
 	</ul>
