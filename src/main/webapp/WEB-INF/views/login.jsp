@@ -20,21 +20,16 @@
 
 <div class="div">
 
-
-
-
 	<form:form action="${myUrl}" commandName="user" method="POST" cssClass="form">
 	
 	<h1 class="title">
 	Login
-	<a href="http://localhost:8080/usermanagement/login" name="new" class="newAccount" >Create New Account</a>
+	<a href="http://localhost:8080/usermanagement/newAccount" class="newAccount" >Create New Account</a>
 	</h1>
 	
 	 <form:input placeholder="Username" path="userName"/><br>
 	 <form:password placeholder="Password" path="password"/><br>
 	 <input class="buton" type="submit" value="Login" />
-	
-	
 	
   </form:form>
  
