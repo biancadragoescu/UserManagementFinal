@@ -1,25 +1,27 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
 
 <head>
-	<link rel="stylesheet" type="text/css" href="resources/style.css">
-	
-	<title>LOGIN</title>
-	
+<link rel="stylesheet" type="text/css" href="resources/success.css">
+
+<title>LOGIN</title>
+
 </head>
 
 
 <body>
-	<h2> ${user.userName } </h2>
-	<a href="http://localhost:8080/usermanagement/login"><button class="signout" type="button">Logout</button></a>
+	<ul class="meniu">
+		<li><a href="https://www.google.ro/?gws_rd=cr&ei=aCnFU4zzA4e0ywPAzoGQCw">Home</a></li>
+		<li><a href="">Change Password</a></li>
+		<li><a href="">Edit User Information</a></li>
+		<li class="logout"><a href="http://localhost:8080/usermanagement/login">Logout</a></li>
+	</ul>
+	<h1 class="username" >${user.userName }</h1>
 	
-<h1 class="rez">
-	Success!!!
-</h1>
-	
-	 
+	<img class="image" src="http://www.geckorecruitment.com/wp-content/uploads/2013/10/smiley_face.jpg" alt="Smiley face">
+
 </body>
 </html>

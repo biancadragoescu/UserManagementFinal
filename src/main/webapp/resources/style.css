@@ -37,6 +37,7 @@ input {
     font-weight:bold; 
     
 }
+
 .title{
 	color:grey;
 	font-style: italic;
@@ -46,29 +47,13 @@ input {
 	border-bottom-style: solid;
 	font-size : 17px;
 	text-align: left;
-	padding : 5px;
-	
-	
-	
+	padding : 5px;		
 }
 
 .form{
 	font-style: italic;
 }
 
-.rez{
-	font-style: italic;
-	font-size: 150px;
-	color: red;
-	margin: 300px 600px;
-}
-
-h2{
-	color: white;
-	font-style: italic;
-	margin-left: 1600px;
-	margin-top: 35px;
-}
 
 .wrong{
 	color: red;
@@ -77,21 +62,6 @@ h2{
 	
 }
 
-.signout{
-	background: E3E2D6;
-	
-	border-radius: 15%;
-	width: 150px;
-	padding: 7px;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-  	
- 	
-    color: 1D4948;
-    font-size: 30px;  
-    font-weight:bold; 
-}
 
 .newAccount { 
 	border-radius: 15%;
