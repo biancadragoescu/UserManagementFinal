@@ -29,7 +29,7 @@ public class FileDAO implements UserDAO {
 			while ((line = buffer.readLine()) != null) {
 				if (!line.equals("")) {
 					String[] parts = line.split(",");
-					User user = new User(parts[1],parts[2],new SimpleDateFormat(parts[3]),parts[4],parts[5],parts[6],parts[7],Boolean.parseBoolean(parts[8]));
+					User user = new User(parts[1],parts[2],parts[3],parts[4],parts[5],parts[6],parts[7],Boolean.parseBoolean(parts[8]));
 					list.add(user);
 				}
 			}
@@ -66,14 +66,20 @@ public class FileDAO implements UserDAO {
 		}
 	}
 	
-	public void addUser(User u) {
+	public void addUser(User user) {
 		if(currentUsers == null){
 			currentUsers = getAllUsers();
 		}
 		
-		if(!currentUsers.contains(u)){
-			currentUsers.add(u);
+		if(!currentUsers.contains(user)){
+			currentUsers.add(user);
 			writeUsersToFile(currentUsers);
 		}
+	}
+
+	@Override
+	public void updateUsers(List<User> list) {
+		// TODO Auto-generated method stub
+		
 	}
 }
