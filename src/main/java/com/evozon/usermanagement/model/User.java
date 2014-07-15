@@ -1,26 +1,24 @@
 package com.evozon.usermanagement.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class User {
 	
 	private static int ID;
 	private String userName;
 	private String email;
-	private SimpleDateFormat birthdate;
+	private String birthdate;
 	private String phone;
 	private String firstName;
 	private String lastName;
 	private String password;
-	private boolean isAdmin = false;
+	private boolean isAdmin;
 	
 	public User() {
 	
 	}
 	
 	
-	public User(String userName, String email, SimpleDateFormat simpleDateFormat, String phone,
+	public User(String userName, String email, String simpleDateFormat, String phone,
 			String firstName, String lastName, String password, boolean isAdmin) {
 		super();
 		User.ID++;
@@ -55,11 +53,11 @@ public class User {
 		this.email = email;
 	}
 
-	public SimpleDateFormat getBirthdate() {
+	public String getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthdate(SimpleDateFormat birthdate) {
+	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
 	}
 
@@ -127,6 +125,12 @@ public class User {
 		} else if (!userName.equals(other.userName))
 			return false;
 		return true;
+	}
+	
+	@Override
+	public String toString(){
+		return ID + "," + userName + "," + email + "," + birthdate + "," +
+				phone + "," + firstName + "," + lastName + "," + password + "," + isAdmin + "\n";
 	}
 
 	

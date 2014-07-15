@@ -31,8 +31,7 @@
 				</tr>
 				<tr>
 					<td>Birthdate:</td>
-					<td><form:input path="birthdate" /></td>
-					<td>
+					<td><form:input action="demo_form.asp" type="date" path="birthdate" /></td>		
 				</tr>
 				<tr>
 					<td>Phone:</td>
@@ -51,11 +50,14 @@
 					<td><form:password path="password" /></td>
 				</tr>
 			</table>
-			<a href="http://localhost:8080/usermanagement/login"><button class="cancelButton" type="button">Cancel</button></a>
-			<input class="createButton" type="submit" value="Create account" />
+			<a href="http://localhost:8080/usermanagement/login"><button
+					class="butons" type="button">Cancel</button></a>
+			<button class="butons" type="submit">Create account</button>
 		</form:form>
 
 	</div>
+
+	​
 
 </body>
 </html>
