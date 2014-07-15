@@ -3,5 +3,8 @@ package com.evozon.usermanagement.service;
 import com.evozon.usermanagement.model.User;
 
 public interface EditUserService {
-	public boolean successChangePassword(User user, String currentPassword, String newPassword, String confirmPassword);
+	
+	public boolean validatePassword(User user, String currentPass, String newPass, String confirmPass);
+	public boolean changePassword(User user, String currentPass,String newPass, String confirmPass);
+	
 }

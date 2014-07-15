@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.evozon.usermanagement.model.User;
 import com.evozon.usermanagement.service.LoginService;
@@ -29,8 +30,9 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginSubmit(@ModelAttribute  User user, Model model) {
-
+	public String loginSubmit(@ModelAttribute  User user, Model model, @RequestParam String userName) {
+		
+		System.out.println("USERNAME: " + userName);
 		
 		String page = "login";
 		if( service.sucessLogin(user) == true ) {

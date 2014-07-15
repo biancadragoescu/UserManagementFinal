@@ -78,4 +78,9 @@ public class FileDAO implements UserDAO {
 		}
 	}
 
+	@Override
+	public void updateUsers(List<User> usersList) {
+		writeUsersToFile(usersList);	
+	}
+
 }
