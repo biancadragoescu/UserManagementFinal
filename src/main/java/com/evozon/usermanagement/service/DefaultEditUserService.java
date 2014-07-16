@@ -20,36 +20,62 @@ public class DefaultEditUserService implements EditUserService{
 
 	private List<User> list;
 
-	@Override
-
-	public boolean validatePassword(User user, String currentPass,String newPass, String confirmPass) {
-
-		if ((user.getPassword().equals(currentPass)) && (newPass.equals(confirmPass))) {
+	
+	//verifica daca parola introdusa coincide cu cea a utilizatorului curent
+	public boolean validateCurrentPassword(User user, String currentPass) {
+		if (user.getPassword().equals(currentPass)) {
 			return true;
 		}
 		return false;
 	}
+	
+	//verifica compatibilitatea newPass, confirmPass
+	public boolean validatePasswordsMatching(String newPass, String confirmPass) {
+		if (newPass.equals(confirmPass)) {
+			return true;
+		}
+		return false;
+	}
+	
+	//verifica daca avem campuri goale
+	public boolean validateEmptyPasswords(String currentPass, String newPass, String confirmPass) {
+		if (currentPass.equals("") || newPass.equals("") || confirmPass.equals("")) {
+			return false;
+		}
+		return true;
+	}
 
 	@Override
-	public boolean changePassword(User user, String currentPass, String newPass, String confirmPass) {
+	//returneaza un string gol daca validarile sunt ok
+	//returneaza un string cu erorile aferente greselilor	
+	
+	public String changePassword(User user, String currentPass, String newPass, String confirmPass) {
 
 		List<User> list = dao.getAllUsers();
 		int index = listUtils.findUserIndex(user, list);
-		boolean isOk = true;
-
+		String errors = "";
+		
 		if (index != -1){
-			if (validatePassword(user, currentPass, newPass, confirmPass)) {
-				user.setPassword(newPass);
-				list.set(index, user);
-				dao.updateUsers(list);
+			if (!(validateEmptyPasswords(currentPass, newPass, confirmPass))) {
+				errors += "You must complete all the fields!" + "\n";
 			} else {
-				isOk = false;
+				if (!(validateCurrentPassword(user, currentPass))) {
+					errors += "Invalid current password!" + "\n";
+				}
+				if (!(validatePasswordsMatching(newPass, confirmPass))) {
+					errors += "New password and confirm password do not match!" + "\n";
+				}
 			}
 		} else  {
-			isOk = false;
+			errors += "User cannot be found!" + "\n";
 		}
-
-		return isOk;
+		
+		if (errors.equals("")) {
+			user.setPassword(newPass);
+		    list.set(index, user);
+		    dao.updateUsers(list);
+		}
+		return errors;
 	}
 
 	@Override

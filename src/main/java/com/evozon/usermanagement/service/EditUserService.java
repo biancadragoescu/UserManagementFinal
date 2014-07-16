@@ -6,7 +6,6 @@ public interface EditUserService {
 
 	public void editUserInfo(User user);
 	public User findUserByUsername(String username);
-	public boolean validatePassword(User user, String currentPass, String newPass, String confirmPass);
-	public boolean changePassword(User user, String currentPass,String newPass, String confirmPass);
+	public String changePassword(User user, String currentPass,String newPass, String confirmPass);
 
 }
