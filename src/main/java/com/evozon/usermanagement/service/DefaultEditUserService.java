@@ -54,9 +54,13 @@ public class DefaultEditUserService implements EditUserService{
 
 	@Override
 	public void editUserInfo(User user) {
+<<<<<<< Updated upstream
 
 		list = dao.getAllUsers();
+=======
+>>>>>>> Stashed changes
 
+		list = dao.getAllUsers();
 		for(User dest : list ) {
 			if( user.getUserName().equals(dest.getUserName())) {
 				dest.setEmail(user.getEmail());
@@ -66,8 +70,13 @@ public class DefaultEditUserService implements EditUserService{
 				dest.setLastName(user.getLastName());
 			}
 		}
+<<<<<<< Updated upstream
 
 
+=======
+		
+		dao.updateUsers(list);
+>>>>>>> Stashed changes
 	}
 
 	@Override

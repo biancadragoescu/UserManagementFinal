@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import scala.annotation.meta.getter;
+
 import com.evozon.usermanagement.model.User;
 import com.evozon.usermanagement.service.EditUserService;
 
@@ -20,6 +22,7 @@ public class EditUserController {
 
 	@Autowired	
 	EditUserService service;
+
 
 
 	@RequestMapping(value = "/login/succes/edit", method = RequestMethod.GET)
@@ -43,6 +46,34 @@ public class EditUserController {
 		//model.addAttribute("mail",mail);
 		service.editUserInfo(user);
 		return "edit";
+	}
+	
+	
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public String getEditForm(Model model, HttpServletRequest request ) {
+		HttpSession ses = request.getSession();
+		String userName = (String) ses.getAttribute("userName");
+		User destUser = service.findUserByUsername(userName);
+		
+	
+		model.addAttribute("destUser", destUser);
+		
+		return "edit";	
+	}
+	
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	public String editUserInformation(@ModelAttribute  User destUser,Model model, HttpServletRequest request) {
+		
+		HttpSession ses = request.getSession();
+		String userName = (String) ses.getAttribute("userName");
+		String password = (String) ses.getAttribute("password");
+		
+		destUser.setUserName(userName);
+		destUser.setPassword(password);
+		service.editUserInfo(destUser);
+		
+		return "sucess";
+>>>>>>> Stashed changes
 	}
 
 	@RequestMapping(value = "/changePassword", method = RequestMethod.GET)
