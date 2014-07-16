@@ -37,8 +37,9 @@ li {
 }
 
 .username{
-	margin-left: 880px;
+	text-align: center;
 	color: white;
+	font-size: 30px;
 }
 .image{
 	width: 300px;
