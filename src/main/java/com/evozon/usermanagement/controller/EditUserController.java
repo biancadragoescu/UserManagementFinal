@@ -1,12 +1,18 @@
 
 package com.evozon.usermanagement.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,43 +29,24 @@ public class EditUserController {
 	@Autowired	
 	EditUserService service;
 
+	@InitBinder
+	public void initBinder(WebDataBinder webDataBinder) {
+	 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	 dateFormat.setLenient(false);
+	 webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	 }
 
-
-	@RequestMapping(value = "/login/succes/edit", method = RequestMethod.GET)
-	public String getEditForm( User userA,Model model) {
-		//User user = new User();
-		//model.addAttribute("user",user);
-		//System.out.println("email"+ userA.getEmail());
-		return "edit";	
-	}
-
-	@RequestMapping(value = "/login/succes/edit", method = RequestMethod.POST)
-	public String editUserInformation(@ModelAttribute  User user,Model model) {
-		//String mail,birthday,phone,firstName,lastName;
-		//mail = user.getEmail();
-		//System.out.println(destinationUser.getEmail());
-		//System.out.println(user.getUserName());
-		//birthday = user.getBirthdate();
-		//phone = user.getPhone();
-		//firstName = user.getFirstName();
-		//lastName = user.getLastName();
-		//model.addAttribute("mail",mail);
-		service.editUserInfo(user);
-		return "edit";
-	}
-	
-	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public String getEditForm(Model model, HttpServletRequest request ) {
+	public String getEditForm(Model model , HttpServletRequest request) {
 		HttpSession ses = request.getSession();
 		String userName = (String) ses.getAttribute("userName");
 		User destUser = service.findUserByUsername(userName);
 		
-	
 		model.addAttribute("destUser", destUser);
 		
 		return "edit";	
 	}
+	
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String editUserInformation(@ModelAttribute  User destUser,Model model, HttpServletRequest request) {
@@ -73,7 +60,6 @@ public class EditUserController {
 		service.editUserInfo(destUser);
 		
 		return "sucess";
->>>>>>> Stashed changes
 	}
 
 	@RequestMapping(value = "/changePassword", method = RequestMethod.GET)
