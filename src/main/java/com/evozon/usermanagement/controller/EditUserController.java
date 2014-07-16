@@ -58,7 +58,7 @@ public class EditUserController {
 		HttpSession ses = request.getSession();
 		String userName = (String) ses.getAttribute("userName");
 		user = service.findUserByUsername(userName);
-		String page = "login";
+		String page = "changePassword";
 		
 		if (service.changePassword(user, currentPassword, newPassword, confirmPassword)) {
 			page = "sucess";

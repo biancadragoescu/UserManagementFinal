@@ -6,7 +6,7 @@ body{
 .div{
 	display: block;
 	width: 495px;
-	height: 270px;
+	height: 310px;
     border: 5px solid grey;
     border-radius: 5%;
     margin: 200px auto;
@@ -31,7 +31,7 @@ body{
 	text-align: center;
 	padding: 7px;
 	margin-left: 50px;
-	margin-bottom:25px;
+	margin-bottom:10px;
 }
 
 input {
@@ -51,4 +51,10 @@ input {
     color: 1D4948;
     font-size: 14px;  
     font-weight:bold; 
+}
+.wrong{
+	color: red;
+	font-style: italic;
+	font-size: 15px;
+	
 }
