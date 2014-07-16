@@ -1,12 +1,15 @@
 package com.evozon.usermanagement.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class User {
 	
 	private static int ID;
 	private String userName;
 	private String email;
-	private String birthdate;
+	private Date birthdate;
 	private String phone;
 	private String firstName;
 	private String lastName;
@@ -18,13 +21,13 @@ public class User {
 	}
 	
 	
-	public User(String userName, String email, String simpleDateFormat, String phone,
+	public User(String userName, String email, Date date, String phone,
 			String firstName, String lastName, String password, boolean isAdmin) {
 		super();
 		User.ID++;
 		this.userName = userName;
 		this.email = email;
-		this.birthdate = simpleDateFormat;
+		this.birthdate = date;
 		this.phone = phone;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -53,11 +56,11 @@ public class User {
 		this.email = email;
 	}
 
-	public String getBirthdate() {
+	public Date getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthdate(String birthdate) {
+	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
 
@@ -129,7 +132,7 @@ public class User {
 	
 	@Override
 	public String toString(){
-		return ID + "," + userName + "," + email + "," + birthdate + "," +
+		return ID + "," + userName + "," + email + "," + new SimpleDateFormat("dd/MM/yyyy").format(birthdate) + "," +
 				phone + "," + firstName + "," + lastName + "," + password + "," + isAdmin + "\n";
 	}
 

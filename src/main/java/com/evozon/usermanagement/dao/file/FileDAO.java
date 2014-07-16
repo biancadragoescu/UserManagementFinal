@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,12 +30,14 @@ public class FileDAO implements UserDAO {
 			while ((line = buffer.readLine()) != null) {
 				if (!line.equals("")) {
 					String[] parts = line.split(",");
-					User user = new User(parts[1],parts[2],parts[3],parts[4],parts[5],parts[6],parts[7],Boolean.parseBoolean(parts[8]));
+					User user = new User(parts[1], parts[2], new SimpleDateFormat("dd/MM/yyyy").parse(parts[3]), parts[4], parts[5], parts[6], parts[7], Boolean.parseBoolean(parts[8]));
 					list.add(user);
 				}
 			}
 		} catch (IOException e) {
 			throw new FileDAOException("Wrong format file", e);
+		} catch (ParseException e) {
+			throw new ParseDateException("Wrong date file format", e);
 		} finally {
 			try {
 				if (buffer != null)
