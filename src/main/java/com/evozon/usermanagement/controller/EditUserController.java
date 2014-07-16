@@ -15,26 +15,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.evozon.usermanagement.model.User;
 import com.evozon.usermanagement.service.EditUserService;
 
-/**
- * @author alexandrabara
- *
- */
-
 @Controller
 public class EditUserController {
 
 	@Autowired	
 	EditUserService service;
-	
-	
+
+
 	@RequestMapping(value = "/login/succes/edit", method = RequestMethod.GET)
 	public String getEditForm( User userA,Model model) {
-		User user = new User();
+		//User user = new User();
 		//model.addAttribute("user",user);
 		//System.out.println("email"+ userA.getEmail());
 		return "edit";	
 	}
-	
+
 	@RequestMapping(value = "/login/succes/edit", method = RequestMethod.POST)
 	public String editUserInformation(@ModelAttribute  User user,Model model) {
 		//String mail,birthday,phone,firstName,lastName;
@@ -49,35 +44,30 @@ public class EditUserController {
 		service.editUserInfo(user);
 		return "edit";
 	}
-	
+
 	@RequestMapping(value = "/changePassword", method = RequestMethod.GET)
-	public String Save() {
+	public String getChangePasswordForm() {
+
 		return "changePassword";
-	}
-	
-	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
-	public String loginSubmit(@RequestParam String currentPassword, @RequestParam String newPassword, @RequestParam String confirmPassword, HttpServletRequest request) {
-	
 		
+	}
+
+	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+	public String loginSubmit(Model model, @ModelAttribute User user, @RequestParam String currentPassword, @RequestParam String newPassword, @RequestParam String confirmPassword, HttpServletRequest request) {
+
 		HttpSession ses = request.getSession();
 		String userName = (String) ses.getAttribute("userName");
-		String password = (String) ses.getAttribute("password");
-		
-		System.out.println(password);
-		System.out.println(userName);
-		System.out.println(currentPassword);
-		System.out.println(newPassword);
-		System.out.println(confirmPassword);
-		
+		user = service.findUserByUsername(userName);
 		String page = "login";
-//		if( service.changePassword(user, currentPass, newPass, confirmPass) == true ) {
-//			page="sucess";
-//		} else {
-//			model.addAttribute("fail", 0);
-//		}
-				
-		//User user = new User("samuel", null, null, null, null, null, "samuel", false);
-		return "sucess";
+		
+		if (service.changePassword(user, currentPassword, newPassword, confirmPassword)) {
+			page = "sucess";
+		} else {
+			model.addAttribute("fail", 0);
+		}
+
+		return page;
+
 	}
-	
+
 }

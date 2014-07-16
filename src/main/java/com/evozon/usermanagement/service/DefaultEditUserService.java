@@ -14,25 +14,29 @@ public class DefaultEditUserService implements EditUserService{
 
 	@Autowired	// declare a constructor
 	private UserDAO dao;
+
+	@Autowired
 	private ListUtils listUtils;
+
 	private List<User> list;
 
 	@Override
+
 	public boolean validatePassword(User user, String currentPass,String newPass, String confirmPass) {
-		
-		if (!(user.getPassword().equals(currentPass)) || !(currentPass.equals(confirmPass)))
-			return false;
-		
-		return true;
+
+		if ((user.getPassword().equals(currentPass)) && (newPass.equals(confirmPass))) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override
-	public boolean changePassword(User user, String currentPass,String newPass, String confirmPass) {
-		
+	public boolean changePassword(User user, String currentPass, String newPass, String confirmPass) {
+
 		List<User> list = dao.getAllUsers();
 		int index = listUtils.findUserIndex(user, list);
 		boolean isOk = true;
-		
+
 		if (index != -1){
 			if (validatePassword(user, currentPass, newPass, confirmPass)) {
 				user.setPassword(newPass);
@@ -44,13 +48,13 @@ public class DefaultEditUserService implements EditUserService{
 		} else  {
 			isOk = false;
 		}
-		
+
 		return isOk;
 	}
-	
+
 	@Override
 	public void editUserInfo(User user) {
-		
+
 		list = dao.getAllUsers();
 
 		for(User dest : list ) {
@@ -62,8 +66,8 @@ public class DefaultEditUserService implements EditUserService{
 				dest.setLastName(user.getLastName());
 			}
 		}
-		
-		
+
+
 	}
 
 	@Override
