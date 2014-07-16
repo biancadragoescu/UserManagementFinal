@@ -53,7 +53,7 @@ public class EditUserController {
 	}
 
 	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
-	public String loginSubmit(Model model, @ModelAttribute User user, @RequestParam String currentPassword, @RequestParam String newPassword, @RequestParam String confirmPassword, HttpServletRequest request) {
+	public String changePasswordSubmit(Model model, @ModelAttribute User user, @RequestParam String currentPassword, @RequestParam String newPassword, @RequestParam String confirmPassword, HttpServletRequest request) {
 
 		HttpSession ses = request.getSession();
 		String userName = (String) ses.getAttribute("userName");
@@ -62,6 +62,7 @@ public class EditUserController {
 		
 		if (service.changePassword(user, currentPassword, newPassword, confirmPassword)) {
 			page = "sucess";
+			model.addAttribute("isOk", 0);
 		} else {
 			model.addAttribute("fail", 0);
 		}

@@ -47,7 +47,7 @@ public class LoginController {
 		String page = "login";
 		if( service.sucessLogin(user) == true ) {
 			page="sucess";
-			
+
 		} else {
 			model.addAttribute("fail", 0);
 		}
