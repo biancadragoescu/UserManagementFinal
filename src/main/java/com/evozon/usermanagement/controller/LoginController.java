@@ -18,6 +18,7 @@ public class LoginController {
 	@Autowired	//declare a constructor
 	LoginService service;
 	
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String Login(Locale locale, Model model) {
 		
@@ -28,8 +29,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginSubmit(@ModelAttribute  User user,Model model) {
-		
+	public String loginSubmit(@ModelAttribute  User user, Model model) {
 
 		
 		String page="login";
@@ -41,5 +41,4 @@ public class LoginController {
 				
 		return page;
 	}
-	
 }
