@@ -4,5 +4,5 @@ import com.evozon.usermanagement.model.User;
 
 public interface CreateAccountService {
 	
-	public void addUser(User u);
+	public String addUser(User u);
 }

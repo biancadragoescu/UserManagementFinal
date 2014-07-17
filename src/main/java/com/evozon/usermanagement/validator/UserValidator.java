@@ -2,18 +2,22 @@ package com.evozon.usermanagement.validator;
 
 import java.util.Calendar;
 import java.util.Date;
+
+import org.springframework.stereotype.Component;
+
 import com.evozon.usermanagement.model.User;
 
+@Component
 public class UserValidator implements Validator<User>{
 	
-	private StringBuffer errors;
+	private StringBuffer errors = new StringBuffer();
 
 	@Override
 	public String validate(User user) {
 		clearErrors();
 		validateUserName(user.getUserName());
 		validateEmail(user.getEmail());
-		validateBirthdate(user.getBirthdate());
+		//validateBirthdate(user.getBirthdate());
 		validatePhone(user.getPhone());
 		validateSimpleField(user.getFirstName());
 		validateSimpleField(user.getLastName());

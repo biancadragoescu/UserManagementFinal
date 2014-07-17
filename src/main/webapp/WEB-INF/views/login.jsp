@@ -37,8 +37,9 @@
 			<br>
 			<form:password placeholder="Password" path="password" />
 			<br>
-			<input class="buton" type="submit" value="Login" />
+			<input class="buton" type="submit" value="Login" onclick="location.href = 'http://localhost:8080/usermanagement/newAccount'"/>
 
+			
 		</form:form>
 
 		<c:if test="${fail ==0}">

@@ -40,7 +40,7 @@ public class CreateAccountController {
 	
 	@RequestMapping(value = "/newAccount", method = RequestMethod.POST)
 	public String submitNewAccount(@ModelAttribute  User user, Model model){
-		createAccountService.addUser(user);
+		String errors = createAccountService.addUser(user);
 		return "emailConfirmationPage";
 	}
 	
