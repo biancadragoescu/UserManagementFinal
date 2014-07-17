@@ -37,7 +37,7 @@
 			<br>
 			<form:password placeholder="Password" path="password" />
 			<br>
-			<input class="buton" type="submit" value="Login" onclick="location.href = 'http://localhost:8080/usermanagement/newAccount'"/>
+			<input class="buton" type="submit" value="Login"/>
 
 			
 		</form:form>

@@ -44,7 +44,7 @@
 				</tr>
 			</table>
 			<a href="http://localhost:8080/usermanagement/sucess">
-				<button class="butons" type="submit">Cancel</button>
+				<button class="butons" type="button">Cancel</button>
 			</a>
 			<button class="butons" type="submit">Edit</button>
 		</form:form>
@@ -56,6 +56,6 @@
 		</c:if>
 		
 	</div>
-
+	
 </body>
 </html>

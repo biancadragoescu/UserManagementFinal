@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.evozon.usermanagement.model.User;
 import com.evozon.usermanagement.service.EditUserService;
@@ -48,7 +47,7 @@ public class EditUserController {
 	
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String editUserInformation(@ModelAttribute  User destUser,Model model, HttpServletRequest request) {
+	public String editUserInformation(@ModelAttribute User destUser, Model model, HttpServletRequest request) {
 		
 		HttpSession ses = request.getSession();
 		String userName = (String) ses.getAttribute("userName");
@@ -56,15 +55,19 @@ public class EditUserController {
 		
 		destUser.setUserName(userName);
 		destUser.setPassword(password);
+		
+		String page = "edit";
 	
 		if( service.editUserInfo(destUser) ) {
-			return "sucess";
+//			model.asMap().clear();
+			page =  "redirect:/sucess";
 		}
 		else {
 			model.addAttribute("destUser", destUser);
 			model.addAttribute("no",0);
-			return "edit";
 		}		
+		
+		return page;
 
 	}
 
@@ -82,7 +85,7 @@ public class EditUserController {
 		User user = service.findUserByUsername(userName);
 		String page = "changePassword";
 		String errors = service.changePassword(user, currentPassword, newPassword, confirmPassword);
-		
+
 		if (errors.equals("")) {
 			model.addAttribute("isOk", 0);
 			page = "redirect:/sucess";

@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.evozon.usermanagement.model.User;
@@ -52,9 +51,8 @@ public class LoginController {
 		if(service.sucessLogin(user)) {
 			model.asMap().clear();
 
-			if( service.sucessLogin(user) == true ) {
-				page="redirect:/sucess";
-				
+			if( service.sucessLogin(user)) {
+				page="redirect:/sucess";		
 
 			} else {
 				model.addAttribute("fail", 0);
