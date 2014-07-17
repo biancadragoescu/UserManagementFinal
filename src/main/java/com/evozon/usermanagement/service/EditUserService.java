@@ -10,7 +10,7 @@ public interface EditUserService {
 	public User findUserByUsername(String username);
 	public boolean validateDate(Date dateSrc);
 	public boolean validateFields(User srcUser);
-	public boolean validatePassword(User user, String currentPass, String newPass, String confirmPass);
-	public boolean changePassword(User user, String currentPass,String newPass, String confirmPass);
+	public String changePassword(User user, String currentPass,String newPass, String confirmPass);
+
 
 }

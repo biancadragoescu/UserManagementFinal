@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import scala.annotation.meta.getter;
-
 import com.evozon.usermanagement.model.User;
 import com.evozon.usermanagement.service.EditUserService;
 
@@ -83,12 +81,14 @@ public class EditUserController {
 		String userName = (String) ses.getAttribute("userName");
 		user = service.findUserByUsername(userName);
 		String page = "changePassword";
+		String errors = service.changePassword(user, currentPassword, newPassword, confirmPassword);
 		
-		if (service.changePassword(user, currentPassword, newPassword, confirmPassword)) {
+		if (errors.equals("")) {
 			page = "sucess";
 			model.addAttribute("isOk", 0);
 		} else {
 			model.addAttribute("fail", 0);
+			model.addAttribute("errors", errors);
 		}
 
 		return page;
