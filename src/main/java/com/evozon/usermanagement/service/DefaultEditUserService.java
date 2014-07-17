@@ -1,7 +1,11 @@
 package com.evozon.usermanagement.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+import org.apache.activemq.filter.function.splitFunction;
+import org.neo4j.cypher.internal.compiler.v2_1.ast.rewriters.isolateAggregation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,20 +57,27 @@ public class DefaultEditUserService implements EditUserService{
 	}
 
 	@Override
-	public void editUserInfo(User user) {
+	public boolean editUserInfo(User user) {
 
+		//System.out.println("Pt Campuri:"+validateFields(user));
+		//System.out.println("Pt data:"+validateDate(user.getBirthdate()));
 		list = dao.getAllUsers();
-		for(User dest : list ) {
-			if( user.getUserName().equals(dest.getUserName())) {
-				dest.setEmail(user.getEmail());
-				dest.setBirthdate(user.getBirthdate());
-				dest.setPhone(user.getPhone());
-				dest.setFirstName(user.getFirstName());
-				dest.setLastName(user.getLastName());
+		if((validateFields(user) && validateDate(user.getBirthdate()))) {
+			for(User dest : list ) {
+				if( user.getUserName().equals(dest.getUserName())) {
+					dest.setEmail(user.getEmail());
+					dest.setBirthdate(user.getBirthdate());
+					dest.setPhone(user.getPhone());
+					dest.setFirstName(user.getFirstName());
+					dest.setLastName(user.getLastName());
+				}
 			}
+			
+			dao.updateUsers(list);
+			return true;
 		}
+		return false;
 		
-		dao.updateUsers(list);
 	}
 
 	@Override
@@ -81,5 +92,29 @@ public class DefaultEditUserService implements EditUserService{
 		}
 		return user;
 	}
+
+	@Override
+	public boolean validateDate(Date birthdateOfUser) {
+		
+		Date date = new Date();
+		if(birthdateOfUser == null || birthdateOfUser.after(date)) {
+			return false;
+		}
+		
+		return true;
+	}
+
+	@Override
+	public boolean validateFields(User srcUser) {
+		
+		if((srcUser.getEmail().equals("") || srcUser.getFirstName().equals("")
+				|| srcUser.getLastName().equals("") || srcUser.getPhone().equals(""))){
+			return false;
+		}
+		
+		return true;
+	}
+	
+	
 
 }
