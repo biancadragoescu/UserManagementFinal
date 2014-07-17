@@ -20,22 +20,22 @@ import com.evozon.usermanagement.service.LoginService;
 @Controller	//adauga un bean in spring container
 @SessionAttributes({"userName","password"})
 public class LoginController {
-	
+
 	@Autowired	//declare a constructor
 	LoginService service;
 	@Autowired
 	EditUserService editService;
-	
-	
+
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String Login(Locale locale, Model model) {
-		
+
 		User user = new User();
 		model.addAttribute("user", user );
-		
+
 		return "login";
 	}
-	
+
 
 
 	@RequestMapping(value = "/login" , method = RequestMethod.POST)
@@ -45,20 +45,16 @@ public class LoginController {
 		session.setAttribute("userName", user.getUserName());
 		session.setAttribute("password", user.getPassword());
 
-
 		String page = "login";
 
-		if(service.sucessLogin(user)) {
+		if( service.sucessLogin(user)) {
 			model.asMap().clear();
+			page="redirect:/sucess";		
 
-			if( service.sucessLogin(user)) {
-				page="redirect:/sucess";		
-
-			} else {
-				model.addAttribute("fail", 0);
-			}
-
+		} else {
+			model.addAttribute("fail", 0);
 		}
+
 		return page;
 	}
 }

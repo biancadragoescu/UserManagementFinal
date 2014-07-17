@@ -59,7 +59,7 @@ public class EditUserController {
 		String page = "edit";
 	
 		if( service.editUserInfo(destUser) ) {
-//			model.asMap().clear();
+			model.addAttribute("isOk", 1);
 			page =  "redirect:/sucess";
 		}
 		else {

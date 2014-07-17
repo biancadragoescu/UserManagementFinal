@@ -1,5 +1,7 @@
 package com.evozon.usermanagement.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class SuccessPageController {
 	
 	@RequestMapping(value = "/sucess", method = RequestMethod.GET)
-	public String requestSuccessPage(@RequestParam(required = false) Integer isOk, Model model){
+	public String requestSuccessPage(@RequestParam(required = false) Integer isOk, Model model, HttpSession session){
+		model.addAttribute("userName", session.getAttribute("userName"));
 		model.addAttribute("isOk", isOk);
 		return "sucess";
 	}
