@@ -45,13 +45,13 @@ public class LoginController {
 		session.setAttribute("password", password);
 		
 		String page = "login";
-		if( service.sucessLogin(user) == true ) {
-			page="sucess";
-
+		if(service.sucessLogin(user)) {
+			model.asMap().clear();
+			page = "redirect:/sucess";
 		} else {
 			model.addAttribute("fail", 0);
 		}
-				
+
 		return page;
 	}
 }
