@@ -37,21 +37,27 @@ public class LoginController {
 		return "login";
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/login" , method = RequestMethod.POST)
 	public String loginSubmit(@ModelAttribute  User user, Model model, @RequestParam String userName, @RequestParam String password, HttpServletRequest request) {
-		
+
 		HttpSession session = request.getSession();
 		session.setAttribute("userName", userName);
 		session.setAttribute("password", password);
-		
+
 		String page = "login";
+
 		if(service.sucessLogin(user)) {
 			model.asMap().clear();
-			page = "redirect:/sucess";
-		} else {
-			model.addAttribute("fail", 0);
-		}
 
+			if( service.sucessLogin(user) == true ) {
+				page="redirect:/sucess";
+				
+
+			} else {
+				model.addAttribute("fail", 0);
+			}
+
+		}
 		return page;
 	}
 }

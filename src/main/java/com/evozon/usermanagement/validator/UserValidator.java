@@ -24,7 +24,7 @@ public class UserValidator implements Validator<User> {
 			validateBirthdate(user.getBirthdate());
 			validatePhone(user.getPhone());
 		}
-		
+
 		return errors.toString();
 	}
 
@@ -32,32 +32,50 @@ public class UserValidator implements Validator<User> {
 		errors.setLength(0);
 	}
 
+
 	private void validateEmail(String email) {
 		if (!email.contains("@")) {
 			errors.append("Email should contain the @ symbol,");
 		}
 	}
 
-	private void validateBirthdate(Date birthdate) {
-		Date currentTime = Calendar.getInstance().getTime();
-		if (currentTime.compareTo(birthdate) < 0) {
-			errors.append("The chosen birthdate should be before today date,");
-		}
-	}
-
-	private void validatePhone(String phone) {
-		if (!phone.matches("[0-9]*")) {
-			errors.append("The phone field should not contain only digits (0-9),");
-		}
-	}
-
-	private String validateEmptyField(String field) {
-		if (field.equals("")) {
-			System.out.println(field);
-			errors.append("There should not exist empty fields\n");
-			return "";
+		private void validateUserName(String userName) {
+			if(userName.equals("")){
+				errors.append("Username field cannot be empty,");
+			}
 		}
 
-		return field;
+		private void validateBirthdate(Date birthdate) {
+			Date currentTime = Calendar.getInstance().getTime();
+			if (currentTime.compareTo(birthdate) < 0) {
+				errors.append("The chosen birthdate should be before today date,");
+			}
+		}
+
+		private void validatePhone(String phone) {
+			if (!phone.matches("[0-9]*")) {
+				errors.append("The phone field should not contain only digits (0-9),");
+			}
+		}
+
+		private String validateEmptyField(String field) {
+			if (field.equals("")) {
+				errors.append("There should not exist empty fields\n");
+				return "";
+			}
+			
+			return field;
+		}
+
+
+
+
+		private String validateSimpleField(String field){
+			if(field.equals("")){
+				errors.append("There should not exist empty fields,");
+				return "";
+			}
+
+			return field;
+		}
 	}
-}

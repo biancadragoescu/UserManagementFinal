@@ -41,7 +41,7 @@ public class CreateAccountController {
 	@RequestMapping(value = "/newAccount", method = RequestMethod.POST)
 	public String submitNewAccount(@ModelAttribute  User user, Model model){
 		String errors = createAccountService.addUser(user);
-		
+
 		if ( errors.equals("") ) {
 			return "emailConfirmationPage";
 		} else {
@@ -50,8 +50,5 @@ public class CreateAccountController {
 			model.addAttribute("fail",0);
 			return "newAccount";
 		}
-		
 	}
-	
-	
 }

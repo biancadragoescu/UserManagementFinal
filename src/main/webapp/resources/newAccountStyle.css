@@ -54,10 +54,3 @@ p {
 	font-style: italic;
 	font-size: 18px;
 }
-
-.errors {
-	display: block;
-	width: 600px;
-	margin: 200px auto;
-	text-align: center;
-}
