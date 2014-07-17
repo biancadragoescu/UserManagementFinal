@@ -1,14 +1,9 @@
 package com.evozon.usermanagement.service;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
-import org.apache.activemq.filter.function.splitFunction;
-import org.neo4j.cypher.internal.compiler.v2_1.ast.rewriters.isolateAggregation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.evozon.usermanagement.dao.UserDAO;
 import com.evozon.usermanagement.model.User;
 import com.evozon.usermanagement.utils.ListUtils;
