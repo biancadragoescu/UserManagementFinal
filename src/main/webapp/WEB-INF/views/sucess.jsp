@@ -20,7 +20,9 @@
 		<li class="logout"><a href="http://localhost:8080/usermanagement/login">Logout</a></li>
 	</ul>
 	<h1 class="username" >${user.userName }</h1>
-	<c:if test="${isOk ==0}">
+	<c:out value="${'Am intrat'}"/>
+	<p>Value = ${isOk}</p>
+	<c:if test="${isOk == 0}">
    				<p class="username">Your password has been successfully changed!</p>
   	</c:if>
 	<img class="image" src="http://www.geckorecruitment.com/wp-content/uploads/2013/10/smiley_face.jpg" alt="Smiley face">

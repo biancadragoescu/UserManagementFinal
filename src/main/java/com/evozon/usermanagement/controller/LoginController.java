@@ -38,11 +38,11 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginSubmit(@ModelAttribute  User user, Model model, @RequestParam String userName, @RequestParam String password, HttpServletRequest request) {
+	public String loginSubmit(@ModelAttribute  User user, Model model, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("userName", userName);
-		session.setAttribute("password", password);
+		session.setAttribute("userName", user.getUserName());
+		session.setAttribute("password", user.getPassword());
 		
 		String page = "login";
 		if(service.sucessLogin(user)) {
