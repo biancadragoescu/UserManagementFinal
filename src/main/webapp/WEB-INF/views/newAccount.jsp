@@ -54,10 +54,16 @@
 					class="butons" type="button">Cancel</button></a>
 			<button class="butons" type="submit">Create account</button>
 		</form:form>
+	
+		<c:if test="${fail ==0}" >
+			<p>${errors[0]}</p>
+			<p>${errors[1]}</p>
+			<p>${errors[2]}</p>
+			<p>${errors[4]}</p>
+		</c:if>	€
 
 	</div>
 
-	€‹
-
+	
 </body>
 </html>

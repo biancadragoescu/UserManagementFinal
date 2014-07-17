@@ -12,6 +12,7 @@ public class DefaultCreateAccountService implements CreateAccountService {
 	
 	@Autowired
 	UserDAO uDAO;
+	
 	@Autowired
 	Validator<User> validator;
 
@@ -24,14 +25,5 @@ public class DefaultCreateAccountService implements CreateAccountService {
 		} 
 		
 		return errors;
-	}
-	
-	public boolean validateUser(User u) {
-		String errors = validator.validate(u);
-		if( errors.equals("")) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 }

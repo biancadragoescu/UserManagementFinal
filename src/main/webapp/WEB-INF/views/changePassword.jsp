@@ -38,7 +38,7 @@
 			</a>
 			
 			<button class="butons" type="submit">Save Changes</button>
-			
+
 			<c:if test="${fail ==0}">
    				<%-- <p class="wrong ">Invalid current password or new passwords do not match.<br>Please try again.</p> --%>
    				<p class="wrong ">${errors}<br>Please try again.</p>
