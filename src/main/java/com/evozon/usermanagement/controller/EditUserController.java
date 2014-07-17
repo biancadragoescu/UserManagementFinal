@@ -56,9 +56,16 @@ public class EditUserController {
 		
 		destUser.setUserName(userName);
 		destUser.setPassword(password);
-		service.editUserInfo(destUser);
-		
-		return "sucess";
+	
+		if( service.editUserInfo(destUser) ) {
+			return "sucess";
+		}
+		else {
+			model.addAttribute("destUser", destUser);
+			model.addAttribute("no",0);
+			return "edit";
+		}		
+
 	}
 
 	@RequestMapping(value = "/changePassword", method = RequestMethod.GET)

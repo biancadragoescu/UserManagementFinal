@@ -1,5 +1,5 @@
 body{
-	background-image: url(http://fc05.deviantart.net/fs71/i/2011/126/2/0/minimal_grey_by_djeric-d3fqdrb.jpg);
+	background-image: url('images/background.jpg');
 	font-family: Verdana;
 }
 
@@ -10,7 +10,7 @@ body{
     border: 5px solid grey;
     border-radius: 5%;
     margin: 200px auto;
-    background-image: url( http://i293.photobucket.com/albums/mm55/3LiteCh0mp/lightgreybackground.jpg);
+     background-image: url('images/back.jpg');
 	text-align: center;
     
 }

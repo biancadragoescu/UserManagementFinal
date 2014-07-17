@@ -25,7 +25,7 @@
 	<c:if test="${isOk == 0}">
    				<p class="username">Your password has been successfully changed!</p>
   	</c:if>
-	<img class="image" src="http://www.geckorecruitment.com/wp-content/uploads/2013/10/smiley_face.jpg" alt="Smiley face">
+	<img class="image" src='http://www.geckorecruitment.com/wp-content/uploads/2013/10/smiley_face.jpg' alt="Smiley face">
 
 </body>
 </html>

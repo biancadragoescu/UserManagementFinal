@@ -5,8 +5,9 @@
 
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="resources/changePassStyle.css">
-	<title>Change Password</title>
+<link rel="stylesheet" type="text/css"
+	href="resources/changePassStyle.css">
+<title>Change Password</title>
 </head>
 <body>
 	<div class="div">
@@ -30,22 +31,22 @@
 					<td><input type="password" name="confirmPassword" /></td>
 				</tr>
 			</table>
-			
+
 			<a href="http://localhost:8080/usermanagement/sucess">
-				<button
-					class="butons" type="button">Cancel
-				</button>
+				<button class="butons" type="button">Cancel</button>
 			</a>
-			
-				<button class="butons" type="submit">Save Changes
-				</button>
-			
-			<c:if test="${fail == 0}">
-   				<p class="wrong ">${errors}<br>Please try again.</p>
-  			</c:if>
+
+
+			<button class="butons" type="submit">Save Changes</button>
+
+			<c:if test="${fail ==0}">
+				<%-- <p class="wrong ">Invalid current password or new passwords do not match.<br>Please try again.</p> --%>
+				<p class="wrong ">${errors}<br>Please try again.
+				</p>
+			</c:if>
 		</form:form>
-		
-		
+
+
 	</div>
 </body>
 </html>

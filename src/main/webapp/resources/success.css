@@ -1,6 +1,5 @@
 body {
-	background-image:
-		url(http://fc05.deviantart.net/fs71/i/2011/126/2/0/minimal_grey_by_djeric-d3fqdrb.jpg);
+	background-image: url('images/background.jpg');
 	font-family: Verdana;
 }
 
@@ -14,7 +13,7 @@ ul {
 	height: 40px;
 	font-size: 30px;
 	font-weight: bold;
-	background-image:url( http://i1.ytimg.com/vi/8l9KWSXOQyM/maxresdefault.jpg);
+	background-image:url('images/meniu.jpg');
 	font-family: Helvetica, Arial, Verdana, sans-serif;
 	border-bottom: 4px solid #336666;
 	border-top: 1px solid #C0E2D4;

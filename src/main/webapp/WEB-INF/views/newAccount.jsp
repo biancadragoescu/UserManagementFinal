@@ -31,7 +31,8 @@
 				</tr>
 				<tr>
 					<td>Birthdate:</td>
-					<td><form:input action="demo_form.asp" type="date" path="birthdate" /></td>		
+					<td><form:input action="demo_form.asp" type="date"
+							path="birthdate" /></td>
 				</tr>
 				<tr>
 					<td>Phone:</td>
@@ -55,9 +56,14 @@
 			<button class="butons" type="submit">Create account</button>
 		</form:form>
 
+		<c:if test="${fail ==0}">
+			<p>${errors[0]}</p>
+			<p>${errors[1]}</p>
+			<p>${errors[2]}</p>
+			<p>${errors[4]}</p>
+		</c:if>
+		€
+
 	</div>
-
-	€‹
-
 </body>
 </html>

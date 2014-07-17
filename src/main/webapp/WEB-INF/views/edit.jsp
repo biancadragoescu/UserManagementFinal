@@ -43,9 +43,18 @@
 					<td><form:input path="lastName" /></td>
 				</tr>
 			</table>
-			<input type="button" value="Cancel"  onclick="history.back();"/>
-			<input type="submit" value="Edit" />
+			<a href="http://localhost:8080/usermanagement/sucess">
+				<button class="butons" type="submit">Cancel</button>
+			</a>
+			<button class="butons" type="submit">Edit</button>
 		</form:form>
+		
+		<c:if test="${no ==0}">
+			<p class="wrong">
+				Please complete correctly all fields!!!<br> Please try again.
+			</p>
+		</c:if>
+		
 	</div>
 
 </body>
