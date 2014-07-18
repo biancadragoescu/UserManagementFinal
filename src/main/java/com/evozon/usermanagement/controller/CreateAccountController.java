@@ -38,6 +38,7 @@ public class CreateAccountController {
 	  return "newAccount";
 	 }
 	
+	
 	@RequestMapping(value = "/newAccount", method = RequestMethod.POST)
 	public String submitNewAccount(@ModelAttribute  User user, Model model){
 		String errors = createAccountService.addUser(user);
