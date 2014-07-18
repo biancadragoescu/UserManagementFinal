@@ -96,5 +96,33 @@ public class EditUserController {
 		return page;
 
 	}
+	
+	@RequestMapping(value = "/resetPassword", method = RequestMethod.GET)
+	 public String getResetPasswordForm(Model model) {
+		User user = new User();
+		model.addAttribute("user",user);
+		return "resetPassword";
+	 }
+	
+	
+	@RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
+	public String resetPasswordSubmit(Model model, @RequestParam String email, @ModelAttribute User user){
+
+		String page = "resetPassword";
+		String errors = service.resetPassword(email);
+		//System.out.println(email);
+
+		if (errors.equals("")) {
+			User userByEmail = service.findUserByEmail(email);
+			page = "resetPasswordOk";
+			model.addAttribute("newPassword", userByEmail.getPassword());
+		} else {
+			model.addAttribute("fail", 0);
+			model.addAttribute("errors", errors);
+		}
+
+		return page;
+	}
+
 
 }

@@ -11,6 +11,8 @@ public interface EditUserService {
 	public boolean validateDate(Date dateSrc);
 	public boolean validateFields(User srcUser);
 	public String changePassword(User user, String currentPass,String newPass, String confirmPass);
+	public User findUserByEmail(String email);
+	public String resetPassword(String email);
 
 
 }

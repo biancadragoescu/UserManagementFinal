@@ -68,7 +68,15 @@ input {
     color: 1D4948;
     font-size: 10px;  
     font-weight:bold; 
-    margin-left: 230px;
+    margin-left: 230px;	
+}
+
+.resetPassword { 
+	border-radius: 15%;
+    color: 1D4948;
+    font-size: 10px;  
+    font-weight:bold; 
+    margin-left: 300px;
 	
 }
 
