@@ -1,15 +1,11 @@
 package com.evozon.usermanagement.service;
 
-import java.util.Date;
-
 import com.evozon.usermanagement.model.User;
 
 public interface EditUserService {
 
 	public String editUserInfo(User user);
 	public User findUserByUsername(String username);
-	public boolean validateDate(Date dateSrc);
-	public boolean validateFields(User srcUser);
 	public String changePassword(User user, String currentPass,String newPass, String confirmPass);
 	public User findUserByEmail(String email);
 	public String resetPassword(String email);

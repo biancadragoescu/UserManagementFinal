@@ -2,7 +2,6 @@ package com.evozon.usermanagement.service;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,32 +114,10 @@ public class DefaultEditUserService implements EditUserService{
 		for(User dest : list ) {
 			if(username.equals(dest.getUserName())) {
 				return dest;
-
 			}
 		}
+		
 		return null;
-	}
-
-	@Override
-	public boolean validateDate(Date birthdateOfUser) {
-
-		Date date = new Date();
-		if(birthdateOfUser == null || birthdateOfUser.after(date)) {
-			return false;
-		}
-
-		return true;
-	}
-
-	@Override
-	public boolean validateFields(User srcUser) {
-
-		if((srcUser.getEmail().equals("") || srcUser.getFirstName().equals("")
-				|| srcUser.getLastName().equals("") || srcUser.getPhone().equals(""))){
-			return false;
-		}
-
-		return true;
 	}
 
 	@Override

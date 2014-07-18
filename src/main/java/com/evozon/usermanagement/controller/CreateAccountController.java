@@ -20,7 +20,7 @@ import com.evozon.usermanagement.service.CreateAccountService;
 public class CreateAccountController {
 	
 	@Autowired
-	CreateAccountService createAccountService;
+	CreateAccountService createAccountService;	
 	
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder) {
