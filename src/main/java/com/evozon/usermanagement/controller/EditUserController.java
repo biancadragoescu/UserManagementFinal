@@ -57,13 +57,16 @@ public class EditUserController {
 		
 		String page = "edit";
 	
-		if( service.editUserInfo(destUser) ) {
+		String errors = service.editUserInfo(destUser);
+		if( errors.equals("") ) {
 			model.addAttribute("isOk", 1);
 			page =  "redirect:/sucess";
 		}
 		else {
+			String[] parts = errors.split(",");
 			model.addAttribute("destUser", destUser);
-			model.addAttribute("no",0);
+			model.addAttribute("errors", parts);
+			model.addAttribute("fail",0);
 		}		
 		
 		return page;

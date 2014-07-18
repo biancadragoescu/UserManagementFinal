@@ -23,6 +23,7 @@ public class LoginController {
 
 	@Autowired	//declare a constructor
 	LoginService service;
+	
 	@Autowired
 	EditUserService editService;
 

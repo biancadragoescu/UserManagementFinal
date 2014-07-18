@@ -6,7 +6,7 @@ import com.evozon.usermanagement.model.User;
 
 public interface EditUserService {
 
-	public boolean editUserInfo(User user);
+	public String editUserInfo(User user);
 	public User findUserByUsername(String username);
 	public boolean validateDate(Date dateSrc);
 	public boolean validateFields(User srcUser);

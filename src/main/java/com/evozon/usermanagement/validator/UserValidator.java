@@ -11,15 +11,14 @@ import com.evozon.usermanagement.model.User;
 @Component
 public class UserValidator implements Validator<User> {
 
-	private StringBuffer errors = new StringBuffer();
+	private StringBuffer errors = new StringBuffer(); //""
 
 	@Override
 	public String validate(User user) {
 		clearErrors();
 		if(!validateEmptyField(user.getUserName()).equals("") && !validateEmptyField(user.getEmail()).equals("")
 				&& !validateEmptyField(user.getPhone()).equals("") && !validateEmptyField(user.getFirstName()).equals("")
-				&& !validateEmptyField(user.getLastName()).equals("") && !validateEmptyField(user.getPassword()).equals("")
-				&& user.getBirthdate() != null) {
+				&& !validateEmptyField(user.getLastName()).equals("") && !validateEmptyField(user.getPassword()).equals("")) {
 			validateEmail(user.getEmail());
 			validateBirthdate(user.getBirthdate());
 			validatePhone(user.getPhone());
@@ -39,43 +38,29 @@ public class UserValidator implements Validator<User> {
 		}
 	}
 
-		private void validateUserName(String userName) {
-			if(userName.equals("")){
-				errors.append("Username field cannot be empty,");
-			}
-		}
-
-		private void validateBirthdate(Date birthdate) {
+	private void validateBirthdate(Date birthdate) {
+		if(birthdate != null) {
 			Date currentTime = Calendar.getInstance().getTime();
 			if (currentTime.compareTo(birthdate) < 0) {
 				errors.append("The chosen birthdate should be before today date,");
 			}
-		}
-
-		private void validatePhone(String phone) {
-			if (!phone.matches("[0-9]*")) {
-				errors.append("The phone field should not contain only digits (0-9),");
-			}
-		}
-
-		private String validateEmptyField(String field) {
-			if (field.equals("")) {
-				errors.append("There should not exist empty fields\n");
-				return "";
-			}
-			
-			return field;
-		}
-
-
-
-
-		private String validateSimpleField(String field){
-			if(field.equals("")){
-				errors.append("There should not exist empty fields,");
-				return "";
-			}
-
-			return field;
+		} else {
+			errors.append("Please complete the birthdate field!");
 		}
 	}
+
+	private void validatePhone(String phone) {
+		if (!phone.matches("[0-9]*")) {
+			errors.append("The phone field should contain only digits (0-9),");
+		}
+	}
+
+	private String validateEmptyField(String field) {
+		if (field.equals("")) {
+			errors.append("There should not exist empty fields,");
+			return "";
+		}
+
+		return field;
+	}
+}

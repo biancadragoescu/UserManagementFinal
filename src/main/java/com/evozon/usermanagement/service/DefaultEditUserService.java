@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.evozon.usermanagement.dao.UserDAO;
 import com.evozon.usermanagement.model.User;
 import com.evozon.usermanagement.utils.ListUtils;
+import com.evozon.usermanagement.validator.Validator;
 
 @Service
 public class DefaultEditUserService implements EditUserService{
@@ -21,9 +22,12 @@ public class DefaultEditUserService implements EditUserService{
 	@Autowired
 	private ListUtils listUtils;
 
+	@Autowired
+	private Validator<User> validator;
+
 	private List<User> list;
 
-	
+
 	//verifica daca parola introdusa coincide cu cea a utilizatorului curent
 	public boolean validateCurrentPassword(User user, String currentPass) {
 		if (user.getPassword().equals(currentPass)) {
@@ -31,7 +35,7 @@ public class DefaultEditUserService implements EditUserService{
 		}
 		return false;
 	}
-	
+
 	//verifica compatibilitatea newPass, confirmPass
 	public boolean validatePasswordsMatching(String newPass, String confirmPass) {
 		if (newPass.equals(confirmPass)) {
@@ -39,7 +43,7 @@ public class DefaultEditUserService implements EditUserService{
 		}
 		return false;
 	}
-	
+
 	//verifica daca avem campuri goale
 	public boolean validateEmptyPasswords(String currentPass, String newPass, String confirmPass) {
 		if (currentPass.equals("") || newPass.equals("") || confirmPass.equals("")) {
@@ -51,13 +55,13 @@ public class DefaultEditUserService implements EditUserService{
 	@Override
 	//returneaza un string gol daca validarile sunt ok
 	//returneaza un string cu erorile aferente greselilor	
-	
+
 	public String changePassword(User user, String currentPass, String newPass, String confirmPass) {
 
 		List<User> list = dao.getAllUsers();
 		int index = listUtils.findUserIndex(user, list);
 		String errors = "";
-		
+
 		if (index != -1){
 			if (!(validateEmptyPasswords(currentPass, newPass, confirmPass))) {
 				errors += "You must complete all the fields!" + "\n";
@@ -72,20 +76,21 @@ public class DefaultEditUserService implements EditUserService{
 		} else  {
 			errors += "User cannot be found!" + "\n";
 		}
-		
+
 		if (errors.equals("")) {
 			user.setPassword(newPass);
-		    list.set(index, user);
-		    dao.updateUsers(list);
+			list.set(index, user);
+			dao.updateUsers(list);
 		}
 		return errors;
 	}
 
 	@Override
-	public boolean editUserInfo(User user) {
+	public String editUserInfo(User user) {
 
 		list = dao.getAllUsers();
-		if((validateFields(user) && validateDate(user.getBirthdate()))) {
+		String errors = validator.validate(user);
+		if( errors.equals("") ){
 			for(User dest : list ) {
 				if( user.getUserName().equals(dest.getUserName())) {
 					dest.setEmail(user.getEmail());
@@ -95,17 +100,16 @@ public class DefaultEditUserService implements EditUserService{
 					dest.setLastName(user.getLastName());
 				}
 			}
-			
+
 			dao.updateUsers(list);
-			return true;
 		}
-		return false;
-		
+
+		return errors;
 	}
 
 	@Override
 	public User findUserByUsername(String username) {
-		
+
 		list = dao.getAllUsers();
 
 		for(User dest : list ) {
@@ -119,23 +123,23 @@ public class DefaultEditUserService implements EditUserService{
 
 	@Override
 	public boolean validateDate(Date birthdateOfUser) {
-		
+
 		Date date = new Date();
 		if(birthdateOfUser == null || birthdateOfUser.after(date)) {
 			return false;
 		}
-		
+
 		return true;
 	}
 
 	@Override
 	public boolean validateFields(User srcUser) {
-		
+
 		if((srcUser.getEmail().equals("") || srcUser.getFirstName().equals("")
 				|| srcUser.getLastName().equals("") || srcUser.getPhone().equals(""))){
 			return false;
 		}
-		
+
 		return true;
 	}
 
@@ -159,7 +163,7 @@ public class DefaultEditUserService implements EditUserService{
 		}
 		return true;
 	}
-		
+
 	//verifica daca email-ul contine @ sau nu
 	//returneaza true daca totul e in regulsa si fals altfel
 	public boolean validateEmail(String email) {
@@ -168,7 +172,7 @@ public class DefaultEditUserService implements EditUserService{
 		}
 		return false;
 	}
-		
+
 	public String generatePassword() {
 		SecureRandom random = new SecureRandom();
 		return new BigInteger(64, random).toString(32);
@@ -182,7 +186,7 @@ public class DefaultEditUserService implements EditUserService{
 		List<User> list = dao.getAllUsers();
 		String errors = "";
 		User user = findUserByEmail(email);
-		
+
 		if (!validateEmptyField(email)) {
 			errors += "Complete the email field!";
 		} else {
@@ -193,7 +197,7 @@ public class DefaultEditUserService implements EditUserService{
 					errors += "This email cannot be found!";	
 				}
 			}
-			
+
 			if (errors.equals("")) {
 				int index = listUtils.findUserIndex(user, list);
 				user.setPassword(generatePassword());
