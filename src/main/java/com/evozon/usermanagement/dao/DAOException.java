@@ -1,4 +1,3 @@
-
 package com.evozon.usermanagement.dao;
 
 public class DAOException extends RuntimeException{

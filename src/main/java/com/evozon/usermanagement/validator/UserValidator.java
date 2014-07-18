@@ -1,4 +1,3 @@
-
 package com.evozon.usermanagement.validator;
 
 import java.util.Calendar;

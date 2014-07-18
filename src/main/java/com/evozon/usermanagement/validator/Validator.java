@@ -1,4 +1,3 @@
-
 package com.evozon.usermanagement.validator;
 
 public interface Validator<T> {
