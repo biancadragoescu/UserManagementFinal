@@ -50,6 +50,10 @@
 			</p>
 		</c:if>
 
+		<c:if test="${successfulAccount}">
+			<p>Your account has been successfully created!</p>
+		</c:if>
+
 	</div>
 
 
