@@ -29,7 +29,6 @@ public class DefaultCreateAccountService implements CreateAccountService {
 				uDAO.addUser(user);
 			}
 		} else {
-			System.out.println("null");
 			errors = "The given username is already in use,";
 		}
 		
