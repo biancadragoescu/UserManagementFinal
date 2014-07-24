@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.neo4j.cypher.internal.compiler.v2_1.perty.docbuilders.toStringDocBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
@@ -28,8 +29,15 @@ public class HibernateDAO implements UserDAO{
 	}
 
 	@Override
-	public void updateUsers(List<User> usersList) {
-		//session.getCurrentSession().update();
+	public void updateUsers(List<User> usersList,int index) {
+			
+		Session s = session.getCurrentSession();
+		if( index != -1 ) {
+			User user = usersList.get(index);
+			s.update(user);
+			s.merge(user);
+		}
+		
 	}
 
 	@Override

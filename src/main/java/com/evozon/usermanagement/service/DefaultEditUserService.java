@@ -122,13 +122,14 @@ public class DefaultEditUserService implements EditUserService{
 		if (errors.equals("")) {
 			user.setPassword(BCrypt.hashpw(newPass, BCrypt.gensalt()));
 			list.set(index, user);
-			dao.updateUsers(list);
+			dao.updateUsers(list,index);
 		}
 		return errors;
 	}
 	@Override
 	public String editUserInfo(User user) {
-
+		
+		int index = -1;
 		list = dao.getAllUsers();
 		String errors = validator.validate(user);
 		if( errors.equals("") ){
@@ -139,10 +140,11 @@ public class DefaultEditUserService implements EditUserService{
 					dest.setPhone(user.getPhone());
 					dest.setFirstName(user.getFirstName());
 					dest.setLastName(user.getLastName());
+					index= list.indexOf(dest);
 				}
 			}
 
-			dao.updateUsers(list);
+			dao.updateUsers(list,index);
 		}
 
 		return errors;
@@ -224,7 +226,7 @@ public class DefaultEditUserService implements EditUserService{
 				int index = listUtils.findUserIndex(user, list);
 				user.setPassword(BCrypt.hashpw(getParolaGenerata(), BCrypt.gensalt()));
 				list.set(index, user);
-				dao.updateUsers(list);
+				dao.updateUsers(list,index);
 			}
 		}
 		return errors; 

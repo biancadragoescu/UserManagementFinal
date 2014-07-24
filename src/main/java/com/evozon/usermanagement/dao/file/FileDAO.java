@@ -99,7 +99,7 @@ public class FileDAO implements UserDAO {
 	}
 	
 	@Override
-	public void updateUsers(List<User> usersList) {
+	public void updateUsers(List<User> usersList,int index) {
 		writeUsersToFile(usersList);	
 	}
 
