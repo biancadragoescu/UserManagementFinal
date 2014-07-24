@@ -9,6 +9,6 @@ public interface EditUserService {
 	public String changePassword(User user, String currentPass,String newPass, String confirmPass);
 	public User findUserByEmail(String email);
 	public String resetPassword(String email);
-
+	public String getParolaGenerata();
 
 }

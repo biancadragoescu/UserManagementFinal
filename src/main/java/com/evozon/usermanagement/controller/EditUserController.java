@@ -119,6 +119,7 @@ public class EditUserController {
 			User userByEmail = service.findUserByEmail(email);
 			page = "resetPasswordOk";
 			model.addAttribute("newPassword", userByEmail.getPassword());
+			model.addAttribute("newPassword", service.getParolaGenerata());
 		} else {
 			model.addAttribute("fail", 0);
 			model.addAttribute("errors", errors);

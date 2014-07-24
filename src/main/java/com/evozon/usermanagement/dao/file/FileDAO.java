@@ -13,6 +13,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -25,7 +26,7 @@ import com.evozon.usermanagement.model.User;
 
 @Repository(value="fileDAO")
 public class FileDAO implements UserDAO {
-	
+
 	private List<User> currentUsers;
 	
 	public FileDAO(){
@@ -43,7 +44,7 @@ public class FileDAO implements UserDAO {
 			while ((line = buffer.readLine()) != null) {
 				if (!line.equals("")) {
 					String[] parts = line.split(",");
-					User user = new User(parts[1], parts[2], new SimpleDateFormat("dd/MM/yyyy").parse(parts[3]), parts[4], parts[5], parts[6], parts[7], Boolean.parseBoolean(parts[8]));
+					User user = new User(parts[1], parts[2], new SimpleDateFormat("dd/MM/yyyy").parse(parts[3]), parts[4], parts[5], parts[6], parts[7]);
 					list.add(user);
 				}
 			}
@@ -62,7 +63,7 @@ public class FileDAO implements UserDAO {
 		return list;
 	}
 
-	
+
 	public void writeUsersToFile(List<User> usersList) {
 		BufferedWriter writer = null;
 		try {
@@ -85,14 +86,16 @@ public class FileDAO implements UserDAO {
 	
 	@Override
 	public void addUser(User user) {
-		if(currentUsers == null){
+		if(currentUsers == null) {
 			currentUsers = getAllUsers();
 		}
-		
-		if(!currentUsers.contains(user)){
-			currentUsers.add(user);
-			writeUsersToFile(currentUsers);
+
+		if(currentUsers == null) {
+			currentUsers = new ArrayList<User>();
 		}
+
+		currentUsers.add(user);
+		writeUsersToFile(currentUsers);
 	}
 	
 	@Override

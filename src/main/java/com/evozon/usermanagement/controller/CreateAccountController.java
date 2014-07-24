@@ -21,7 +21,7 @@ import com.evozon.usermanagement.service.CreateAccountService;
 public class CreateAccountController {
 	
 	@Autowired
-	CreateAccountService createAccountService;	
+	CreateAccountService createAccountService;
 	
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder) {
@@ -45,7 +45,8 @@ public class CreateAccountController {
 		String errors = createAccountService.addUser(user);
 
 		if ( errors.equals("") ) {
-			return "emailConfirmationPage";
+			model.addAttribute("successfulAccount", true);
+			return "redirect:/login";
 		} else {
 			String[] parts = errors.split(",");
 			model.addAttribute("errors",parts);

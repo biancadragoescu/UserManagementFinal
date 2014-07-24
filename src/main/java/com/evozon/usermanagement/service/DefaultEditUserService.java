@@ -5,6 +5,7 @@ import java.security.SecureRandom;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.evozon.usermanagement.dao.UserDAO;
@@ -25,11 +26,24 @@ public class DefaultEditUserService implements EditUserService{
 	private Validator<User> validator;
 
 	private List<User> list;
+	
+	private String generatedPassword;
+
+	public String getParolaGenerata() {
+		return generatedPassword;
+	}
 
 
 	//verifica daca parola introdusa coincide cu cea a utilizatorului curent
+//	public boolean validateCurrentPassword(User user, String currentPass) {
+//		if (currentPass.equals(user.getPassword())) {
+//			return true;
+//		}
+//		return false;
+//	}
+//	
 	public boolean validateCurrentPassword(User user, String currentPass) {
-		if (user.getPassword().equals(currentPass)) {
+		if (BCrypt.checkpw(currentPass, user.getPassword())) {
 			return true;
 		}
 		return false;
@@ -55,6 +69,35 @@ public class DefaultEditUserService implements EditUserService{
 	//returneaza un string gol daca validarile sunt ok
 	//returneaza un string cu erorile aferente greselilor	
 
+//	public String changePassword(User user, String currentPass, String newPass, String confirmPass) {
+//
+//		List<User> list = dao.getAllUsers();
+//		int index = listUtils.findUserIndex(user, list);
+//		String errors = "";
+//
+//		if (index != -1){
+//			if (!(validateEmptyPasswords(currentPass, newPass, confirmPass))) {
+//				errors += "You must complete all the fields!" + "\n";
+//			} else {
+//				if (!(validateCurrentPassword(user, currentPass))) {
+//					errors += "Invalid current password!" + "\n";
+//				}
+//				if (!(validatePasswordsMatching(newPass, confirmPass))) {
+//					errors += "New password and confirm password do not match!" + "\n";
+//				}
+//			}
+//		} else  {
+//			errors += "User cannot be found!" + "\n";
+//		}
+//
+//		if (errors.equals("")) {
+//			user.setPassword(newPass);
+//			list.set(index, user);
+//			dao.updateUsers(list);
+//		}
+//		return errors;
+//	}
+
 	public String changePassword(User user, String currentPass, String newPass, String confirmPass) {
 
 		List<User> list = dao.getAllUsers();
@@ -77,13 +120,12 @@ public class DefaultEditUserService implements EditUserService{
 		}
 
 		if (errors.equals("")) {
-			user.setPassword(newPass);
+			user.setPassword(BCrypt.hashpw(newPass, BCrypt.gensalt()));
 			list.set(index, user);
 			dao.updateUsers(list);
 		}
 		return errors;
 	}
-
 	@Override
 	public String editUserInfo(User user) {
 
@@ -110,10 +152,12 @@ public class DefaultEditUserService implements EditUserService{
 	public User findUserByUsername(String username) {
 
 		list = dao.getAllUsers();
-
-		for(User dest : list ) {
-			if(username.equals(dest.getUserName())) {
-				return dest;
+		
+		if (list != null) {
+			for(User dest : list ) {
+				if(username.equals(dest.getUserName())) {
+					return dest;
+				}
 			}
 		}
 		
@@ -176,8 +220,9 @@ public class DefaultEditUserService implements EditUserService{
 			}
 
 			if (errors.equals("")) {
+				this.generatedPassword = generatePassword();
 				int index = listUtils.findUserIndex(user, list);
-				user.setPassword(generatePassword());
+				user.setPassword(BCrypt.hashpw(getParolaGenerata(), BCrypt.gensalt()));
 				list.set(index, user);
 				dao.updateUsers(list);
 			}

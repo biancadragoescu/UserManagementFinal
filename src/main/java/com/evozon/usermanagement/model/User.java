@@ -41,18 +41,12 @@ public class User {
 	@Column(name = "password")
 	private String password;
 	
-	
-	
 	public User() {
 	
 	}
-	
-	
-
-
 
 	public User(String userName, String email, Date date, String phone,
-			String firstName, String lastName, String password, boolean isAdmin) {
+			String firstName, String lastName, String password) {
 		super();
 		
 		this.userName = userName;
@@ -123,7 +117,6 @@ public class User {
 		this.password = password;
 	}
 
-
 	
 	@Override
 	public int hashCode() {
@@ -154,7 +147,7 @@ public class User {
 	@Override
 	public String toString(){
 		return id + "," + userName + "," + email + "," + new SimpleDateFormat("dd/MM/yyyy").format(birthdate) + "," +
-				phone + "," + firstName + "," + lastName + "," + password + "," + "\n";
+				phone + "," + firstName + "," + lastName + "," + password + "\n";
 	}
 	
 }
