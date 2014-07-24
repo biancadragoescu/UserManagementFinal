@@ -14,7 +14,6 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String password;
-	private boolean isAdmin;
 	
 	public User() {
 	
@@ -22,7 +21,7 @@ public class User {
 	
 	
 	public User(String userName, String email, Date date, String phone,
-			String firstName, String lastName, String password, boolean isAdmin) {
+			String firstName, String lastName, String password) {
 		super();
 		User.ID++;
 		this.userName = userName;
@@ -32,7 +31,7 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.password = password;
-		this.isAdmin = isAdmin;
+
 	}
 
 
@@ -96,13 +95,6 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean isAdmin() {
-		return isAdmin;
-	}
-
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
-	}
 	
 	@Override
 	public int hashCode() {
@@ -133,7 +125,7 @@ public class User {
 	@Override
 	public String toString(){
 		return ID + "," + userName + "," + email + "," + new SimpleDateFormat("dd/MM/yyyy").format(birthdate) + "," +
-				phone + "," + firstName + "," + lastName + "," + password + "," + isAdmin + "\n";
+				phone + "," + firstName + "," + lastName + "," + password + "\n";
 	}
 
 	
