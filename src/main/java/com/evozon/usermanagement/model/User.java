@@ -3,28 +3,58 @@ package com.evozon.usermanagement.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "USER")
 public class User {
 	
-	private static int ID;
+	@Id @GeneratedValue
+	@Column(name = "id")
+	private Integer id;
+	
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	@Column(name = "username")
 	private String userName;
+	@Column(name = "email")
 	private String email;
+	@Column(name = "birthday")
 	private Date birthdate;
+	@Column(name = "phone")
 	private String phone;
+	@Column(name = "firstname")
 	private String firstName;
+	@Column(name = "lastname")
 	private String lastName;
+	@Column(name = "password")
 	private String password;
-	private boolean isAdmin;
+	
+	
 	
 	public User() {
 	
 	}
 	
 	
+
+
+
 	public User(String userName, String email, Date date, String phone,
 			String firstName, String lastName, String password, boolean isAdmin) {
 		super();
-		User.ID++;
+		
 		this.userName = userName;
 		this.email = email;
 		this.birthdate = date;
@@ -32,13 +62,10 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.password = password;
-		this.isAdmin = isAdmin;
+
 	}
 
 
-	public int getID() {
-		return ID;
-	}
 	
 	public String getUserName() {
 		return userName;
@@ -96,13 +123,7 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean isAdmin() {
-		return isAdmin;
-	}
 
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
-	}
 	
 	@Override
 	public int hashCode() {
@@ -132,9 +153,8 @@ public class User {
 	
 	@Override
 	public String toString(){
-		return ID + "," + userName + "," + email + "," + new SimpleDateFormat("dd/MM/yyyy").format(birthdate) + "," +
-				phone + "," + firstName + "," + lastName + "," + password + "," + isAdmin + "\n";
+		return id + "," + userName + "," + email + "," + new SimpleDateFormat("dd/MM/yyyy").format(birthdate) + "," +
+				phone + "," + firstName + "," + lastName + "," + password + "," + "\n";
 	}
-
 	
 }

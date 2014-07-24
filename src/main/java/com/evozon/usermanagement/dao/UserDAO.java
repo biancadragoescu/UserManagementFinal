@@ -7,7 +7,7 @@ import com.evozon.usermanagement.model.User;
 public interface UserDAO {
 
 	public List<User> getAllUsers();
-
 	public void updateUsers(List<User> usersList);
 	public void addUser(User u);
+  
 }

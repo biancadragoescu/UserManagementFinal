@@ -30,7 +30,9 @@
 
 			<h1 class="title">
 				Login <a href="http://localhost:8080/usermanagement/newAccount"
-					class="newAccount">Create New Account</a>
+					class="newAccount">Create New Account</a> 
+					<a href="http://localhost:8080/usermanagement/resetPassword"
+					class="resetPassword">Reset password</a>
 			</h1>
 
 			<form:input placeholder="Username" path="userName" />
@@ -53,3 +55,4 @@
 
 </body>
 </html>
+

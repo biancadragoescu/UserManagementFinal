@@ -22,7 +22,7 @@
 		<form:form action="${myUrl}" commandName="destUser" method="POST">
 			<table class="myTable">
 				<tr>
-					<td>Email:</td>
+					<td >Email:</td>
 					<td><form:input path="email" /></td>
 				</tr>
 				<tr>
@@ -49,10 +49,11 @@
 			<button class="butons" type="submit">Edit</button>
 		</form:form>
 		
-		<c:if test="${no ==0}">
-			<p class="wrong">
-				Please complete correctly all fields!!!<br> Please try again.
-			</p>
+		<c:if test="${fail ==0}">
+			<p class="colortext">${errors[0]}</p>
+			<p class="colortext">${errors[1]}</p>
+			<p class="colortext">${errors[2]}</p>
+			<p class="colortext">${errors[4]}</p>
 		</c:if>
 		
 	</div>

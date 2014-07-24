@@ -10,16 +10,29 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import com.evozon.usermanagement.dao.UserDAO;
 import com.evozon.usermanagement.model.User;
 
-@Component
+@Repository(value="fileDAO")
 public class FileDAO implements UserDAO {
 	
 	private List<User> currentUsers;
-
+	
+	public FileDAO(){
+		
+	}
+	
+	@Override
 	public List<User> getAllUsers() {
 		List<User> list = new ArrayList<User>();
 		BufferedReader buffer = null;
@@ -70,6 +83,7 @@ public class FileDAO implements UserDAO {
 		}
 	}
 	
+	@Override
 	public void addUser(User user) {
 		if(currentUsers == null){
 			currentUsers = getAllUsers();
@@ -80,11 +94,12 @@ public class FileDAO implements UserDAO {
 			writeUsersToFile(currentUsers);
 		}
 	}
-
+	
 	@Override
-
 	public void updateUsers(List<User> usersList) {
 		writeUsersToFile(usersList);	
 	}
+
+	
 
 }

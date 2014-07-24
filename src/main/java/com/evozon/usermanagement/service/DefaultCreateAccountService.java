@@ -1,6 +1,7 @@
 package com.evozon.usermanagement.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.evozon.usermanagement.dao.UserDAO;
@@ -29,7 +30,6 @@ public class DefaultCreateAccountService implements CreateAccountService {
 				uDAO.addUser(user);
 			}
 		} else {
-			System.out.println("null");
 			errors = "The given username is already in use,";
 		}
 		
